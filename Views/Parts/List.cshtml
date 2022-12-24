@@ -1,0 +1,10 @@
+﻿<h1> Все товары</h1>
+<h3>@Model.currCategory</h3>
+<div class="row mt-5 mb-2">
+@{ 
+    foreach (Parts part in Model.AllParts ?? new List<Parts>())
+    {
+        @Html.Partial("AllParts", part)
+        }
+    }
+</div>

@@ -1,0 +1,63 @@
+﻿@model Parts
+<div class="row mb-5">
+<h3>Добавление детали в каталог</h3>
+<form asp-action="addPart" method="post" class="form-horizontal">
+    <div class="form-group">
+        <label asp-for="name"></label>
+        <div class="col-7">
+            <input asp-for="name" class="form-control" />
+            <span asp-validation-for="name" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="form-group">
+        <label asp-for="shortDesc"></label>
+        <div class="col-7">
+            <input asp-for="shortDesc" class="form-control" />
+            <span asp-validation-for="shortDesc" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="form-group">
+        <label asp-for="longDesc"></label>
+        <div class="col-7">
+            <input asp-for="longDesc" class="form-control" />
+            <span asp-validation-for="longDesc" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="form-group">
+        <label asp-for="img"></label>
+        <div class="col-7">
+            <input type="file" asp-for="img" class="form-control" />
+            <span asp-validation-for="img" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="form-group">
+        <label asp-for="price"></label>
+        <div class="col-7">
+            <input asp-for="price" class="form-control" />
+            <span asp-validation-for="price" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="form-group">
+        <label asp-for="isavailable"></label>
+        <div class="col-7">
+            <input asp-for="isavailable" type="checkbox" />
+            <span asp-validation-for="isavailable" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="form-group">
+        <label asp-for="isFavourite"></label>
+        <div class="col-7">
+            <input asp-for="isFavourite" type="checkbox" />
+            <span asp-validation-for="isFavourite" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="form-group">
+        <label asp-for="categoryID"></label>
+        <div class="col-7">
+            <input asp-for="categoryID" class="form-control" />
+            <span asp-validation-for="categoryID" class="text-danger"></span>
+        </div>
+    </div>
+    <input class="btn btn-success" type="submit" value="Создать элемент" />
+</form>
+</div>

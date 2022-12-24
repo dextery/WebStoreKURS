@@ -1,0 +1,87 @@
+﻿<!DOCTYPE html>
+@inject SignInManager<ApplicationUser> signInManager;
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    <link href="~/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/css/StyleSheet.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-md navbar-dark bg-dark">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="#">Курсовая</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarCollapse">
+                    <ul class="navbar-nav me-auto mb-2 mb-md-0">
+                        <li class="nav-item active">
+                            <a class="nav-link" asp-controller="Home" asp-action="TopSellers">Главная</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" asp-controller="Parts" asp-action="List" asp-route-category="">Все товары</a>
+                        </li>
+                        <li>
+                            <a class="nav-link" asp-controller="Parts" asp-action="List" asp-route-category="gpu">Графические карты</a>
+                        </li>
+                        <li>
+                            <a class="nav-link" asp-controller="Parts" asp-action="List" asp-route-category="processor">Процессоры</a>
+                        </li>
+                        <li>
+                            <a class="nav-link" asp-controller="Parts" asp-action="List" asp-route-category="ram">Оперативная память</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/ShopCart/ShopCartPage">Корзина</a>
+                        </li>
+                        @if (signInManager.IsSignedIn(User) && User.IsInRole("Admin"))
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link" asp-controller="Administration" asp-action="ListUsers" asp-route-category="">Список пользователей</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" asp-controller="Administration" asp-action="ListRoles" asp-route-category="">Список ролей</a>
+                            </li>
+                        }
+
+                    </ul>
+                    <ul class="navbar-nav ml-auto">
+                        @if (signInManager.IsSignedIn(User))
+                        {
+                            <li class="nav-item ml-auto">
+                                <form method="post" asp-action="Logout" asp-controller="Account">
+                                    <button type="submit" class="nav-link btn btn-link py-0" style="width:auto">
+                                        Выход из @User.Identity.Name
+                                    </button>
+                                </form>
+                            </li>
+                        }
+                        else
+                        {
+                            <li class="nav-item ml-auto">
+                                <a class="nav-link" asp-controller="Account" asp-action="Register">Регистрация</a>
+                            </li>
+                            <li class="nav-item ml-auto">
+                                <a class="nav-link" asp-controller="Account" asp-action="Login">Вход</a>
+                            </li>
+                        }
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <div class="container mt-5">
+        @RenderBody()
+    </div>
+    <footer class="container">
+        <p class="float-end"><a href="#">Вернуться наверх</a></p>
+        <p>©2022 Company, Inc. · <a href="#">Соглашение</a></p>
+        @if (signInManager.IsSignedIn(User) && User.IsInRole("Admin"))
+        {
+            <p><a asp-controller="Addition" asp-action="addPart">Добавить элемент</a></p>
+        }
+    </footer>
+    <script src="~/js/bootstrap.min.js"></script>
+</body>
+</html>

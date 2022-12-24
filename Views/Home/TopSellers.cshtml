@@ -1,0 +1,10 @@
+﻿@model HomeViewModel
+<h1> Популярные товары</h1>
+<div class="row mt-5 mb-2">
+    @{
+        foreach (Parts part in Model.favParts)
+        {
+            @Html.Partial("AllParts", part)
+        }
+    }
+</div>
