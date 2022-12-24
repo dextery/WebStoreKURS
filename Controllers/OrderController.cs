@@ -10,7 +10,8 @@ using WebStoreKURS.Data.Models;
 
 namespace WebStoreKURS.Controllers
 {
-    public class OrderController : Controller
+	[ApiExplorerSettings(IgnoreApi = true)]
+	public class OrderController : Controller
     {
         private readonly IAllOrders allOrders;
         private readonly ShopCart shopCart;

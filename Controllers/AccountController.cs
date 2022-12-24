@@ -10,7 +10,8 @@ using WebStoreKURS.ViewModels;
 
 namespace WebStoreKURS.Controllers
 {
-    public class AccountController : Controller
+	[ApiExplorerSettings(IgnoreApi = true)]
+	public class AccountController : Controller
     {
         private readonly UserManager<ApplicationUser> userManager;
         private readonly SignInManager<ApplicationUser> signInManager;

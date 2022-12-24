@@ -11,7 +11,8 @@ using WebStoreKURS.ViewModels;
 
 namespace WebStoreKURS.Controllers
 {
-    public class ShopCartController : Controller
+	[ApiExplorerSettings(IgnoreApi = true)]
+	public class ShopCartController : Controller
     {
         private readonly IAllParts _partRep;
         private readonly ShopCart _shopCart;

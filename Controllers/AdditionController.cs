@@ -11,7 +11,8 @@ using WebStoreKURS.Data.Models;
 namespace WebStoreKURS.Controllers
 {
     [Authorize(Roles ="Admin")]
-    public class AdditionController : Controller
+	[ApiExplorerSettings(IgnoreApi = true)]
+	public class AdditionController : Controller
     {
         private readonly AppDBContent appDBContent;
         private readonly IAllParts allParts;
