@@ -8,7 +8,8 @@ using WebStoreKURS.ViewModels;
 
 namespace WebStoreKURS.Controllers
 {
-    public class HomeController : Controller
+	[ApiExplorerSettings(IgnoreApi = true)]
+	public class HomeController : Controller
     {
         private readonly IAllParts _partRep;
 

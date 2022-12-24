@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Builder;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
@@ -12,9 +13,9 @@ namespace WebStoreKURS.Data
     {
         public static void Initial(AppDBContent content)
         {
-            
+            content.Database.Migrate();
 
-            if(!content.Category.Any())
+            if (!content.Category.Any())
             {
                 content.Category.AddRange(Categoris.Select(c => c.Value));
             }

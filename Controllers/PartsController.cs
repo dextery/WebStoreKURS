@@ -10,7 +10,8 @@ using WebStoreKURS.ViewModels;
 
 namespace WebStoreKURS.Controllers
 {
-    public class PartsController : Controller
+	[ApiExplorerSettings(IgnoreApi = true)]
+	public class PartsController : Controller
     {
         private readonly IAllParts allParts;
         private readonly IPartsCategory allCategories; 

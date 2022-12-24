@@ -39,11 +39,11 @@ namespace WebStoreKURS
             services.AddAuthentication();
             services.AddIdentity<ApplicationUser, IdentityRole>().AddEntityFrameworkStores<AppDBContent>();
             services.AddScoped(sp => ShopCart.GetCart(sp));
-            services.AddMvc();
             services.AddMemoryCache();
             services.AddSession();
             services.AddMvc(options => options.EnableEndpointRouting = false);
-        }
+            services.AddSwaggerGen();
+		}
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -53,8 +53,10 @@ namespace WebStoreKURS
             app.UseStaticFiles();
             app.UseSession();
             app.UseRouting();
+            app.UseEndpoints(c => c.MapControllers());
+            app.UseSwagger();
+            app.UseSwaggerUI();
             app.UseAuthentication();
-            
 
             //app.UseMvcWithDefaultRoute();
             app.UseMvc(routes =>

@@ -11,7 +11,8 @@ using WebStoreKURS.ViewModels;
 namespace WebStoreKURS.Controllers
 {
     [Authorize(Roles = "Admin")]
-    public class AdministrationController : Controller
+	[ApiExplorerSettings(IgnoreApi = true)]
+	public class AdministrationController : Controller
     {
         private readonly RoleManager<IdentityRole> roleManager;
         private readonly UserManager<ApplicationUser> userManager;
