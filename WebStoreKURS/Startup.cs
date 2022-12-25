@@ -10,6 +10,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using WebStoreApi.Client;
 using WebStoreKURS.Data;
 using WebStoreKURS.Data.Interfaces;
 using WebStoreKURS.Data.Mocks;
@@ -36,6 +37,7 @@ namespace WebStoreKURS
             services.AddTransient<IPartsCategory, CategoryRepository>();
             services.AddTransient<IAllOrders, OrdersRepository>();
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+            services.AddHttpClient<WebStoreApiClient>(x => x.BaseAddress =  new Uri("http://localhost:5113"));
             services.AddAuthentication();
             services.AddIdentity<ApplicationUser, IdentityRole>().AddEntityFrameworkStores<AppDBContent>();
             services.AddScoped(sp => ShopCart.GetCart(sp));

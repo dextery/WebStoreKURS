@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using WebStoreApi.Client;
 using WebStoreKURS.Data.Models;
 using WebStoreKURS.ViewModels;
 
@@ -15,11 +16,15 @@ namespace WebStoreKURS.Controllers
     {
         private readonly RoleManager<IdentityRole> roleManager;
         private readonly UserManager<ApplicationUser> userManager;
-        public AdministrationController(RoleManager<IdentityRole> roleManager, UserManager<ApplicationUser> userManager)
+        private readonly WebStoreApiClient _client;
+
+        public AdministrationController(RoleManager<IdentityRole> roleManager, UserManager<ApplicationUser> userManager, WebStoreApiClient client)
         {
             this.roleManager = roleManager;
             this.userManager = userManager;
-        }
+            _client = client;
+		}
+
         [HttpGet]
         [Authorize]
         public IActionResult CreateRole()
@@ -51,10 +56,11 @@ namespace WebStoreKURS.Controllers
             return View(model);
         }
         [HttpGet]
-        public IActionResult ListRoles()
+        public async Task<IActionResult> ListRoles()
         {
-            var roles = roleManager.Roles;
-            return View(roles);
+            var roles = await _client.GetAll().ConfigureAwait(false);
+
+            return View(roles.Select(x => new IdentityRole() { Id = x.Id, Name = x.Name }).ToArray());
         }
         [HttpGet]
         public async Task<IActionResult> EditRole(string id)
